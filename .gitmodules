@@ -1,0 +1,3 @@
+[submodule "src/bayesopt4ros"]
+	path = src/bayesopt4ros
+	url = https://github.com/lukasfro/bayesopt4ros
