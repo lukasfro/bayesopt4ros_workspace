@@ -1,0 +1,4 @@
+.vscode/
+build_isolated/
+devel_isolated/
+.DS_store
