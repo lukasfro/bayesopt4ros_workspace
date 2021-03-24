@@ -59,8 +59,19 @@ def show_model_1d(gp, config, eval_dict, axis):
 
 
 def show_model_2d(gp, config, eval_dict, axis):
-    raise NotImplementedError("This feature is not yet implemented.")
+    lb, ub = config["lower_bound"], config["upper_bound"]
+    x_eval = np.array(eval_dict["x_eval"])
+    x_best = np.array(eval_dict["x_best"])[-1]
+    y_best = np.array(eval_dict["y_best"])[-1]
 
+    print(x_eval)
+    axis.plot([lb[0], ub[0], ub[0], lb[0], lb[0]],
+              [lb[1], lb[1], ub[1], ub[1], lb[1]])
+    axis.plot(x_eval[:, 0], x_eval[:, 1], "kx")
+    axis.plot(x_best[0], x_best[1], "ro")
+    
+    print(x_best, y_best)
+    
 
 def load_gp(log_dir):
     try:
@@ -102,7 +113,7 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "-d",
-        "--log_dir",
+        "--log-dir",
         help="Logging directory with the results to plot",
         type=str,
         default="./logs/",
@@ -115,4 +126,5 @@ if __name__ == "__main__":
     show_convergence(args.log_dir, axes[0])
     show_model(args.log_dir, axes[1])
     plt.tight_layout()
+    plt.savefig(os.path.join(args.log_dir, "results.png"))
     plt.show()
