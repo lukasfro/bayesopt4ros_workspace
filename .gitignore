@@ -3,3 +3,4 @@ build_isolated/
 devel_isolated/
 logs/
 .DS_store
+.catkin_tools/
